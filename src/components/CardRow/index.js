@@ -36,7 +36,7 @@ function CardRow() {
         numberOfPlaceholderItems={5}
         minimumPlaceholderTime={1000}
         placeholderItem={
-          <div style={{ height: 200, background: '#900' }}>Placeholder</div>
+          <div style={{ height: 280, background: 'rgba(27,32,48,0.9)' }}></div>
         }
         // Carousel configurations
         numberOfCards={numberOfCards}
