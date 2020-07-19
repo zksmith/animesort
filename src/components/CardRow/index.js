@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 
 import './CardRow.scss';
 
 function CardRow() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const chevronWidth = 40;
+
+  const [numberOfCards, setNumOfCards] = useState(5);
+
+  // sets the number of cards in the row based on window width
+  function upDateNumOfCards() {
+    if (window.innerWidth < 400) {
+      setNumOfCards(2);
+    } else if (window.innerWidth < 800) {
+      setNumOfCards(3);
+    } else {
+      setNumOfCards(5);
+    }
+  }
+
+  useEffect(() => {
+    upDateNumOfCards();
+    window.addEventListener('resize', upDateNumOfCards);
+  }, []);
+
+  console.log(window.innerWidth);
 
   return (
     <>
@@ -20,11 +39,10 @@ function CardRow() {
           <div style={{ height: 200, background: '#900' }}>Placeholder</div>
         }
         // Carousel configurations
-        numberOfCards={4}
+        numberOfCards={numberOfCards}
         gutter={12}
         showSlither={true}
         freeScrolling={true}
-        infiniteLoop
         // Active item configurations
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
