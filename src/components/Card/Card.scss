@@ -1,0 +1,6 @@
+.card {
+  &:hover,
+  &:focus {
+    opacity: 0.5;
+  }
+}
