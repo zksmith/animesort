@@ -69,8 +69,8 @@ function SearchBar({ className }) {
       {searchTerm && (
         <div className='search-results'>
           <ul>
-            {searchResults.map((item) => (
-              <li>
+            {searchResults.map((item, index) => (
+              <li key={index}>
                 <a href='!#'>
                   <span
                     style={{ backgroundImage: `url(${item.image_url})` }}
@@ -86,6 +86,11 @@ function SearchBar({ className }) {
               </li>
             ))}
           </ul>
+          <p className='search-result-bottom'>
+            <a href='!#'>
+              View all results for <strong>{searchTerm}</strong>
+            </a>
+          </p>
         </div>
       )}
     </div>
