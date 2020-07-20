@@ -5,33 +5,4 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-
-  .search-form {
-    width: 50%;
-
-    input {
-      width: 90%;
-      padding: 10px 5px;
-      background-color: $background-color;
-      border: none;
-      float: left;
-      color: $primary-text;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    button {
-      float: left;
-      width: 10%;
-      padding: 4px 0;
-      border: none;
-      background-color: $background-color;
-
-      svg {
-        stroke: $primary-text;
-      }
-    }
-  }
 }
