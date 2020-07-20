@@ -12,13 +12,13 @@ function App() {
         <Route path='/' exact>
           <HomePage />
         </Route>
-        <Route path='/anime/:id'>
+        <Route path='/anime/:id' exact>
           <AnimePage />
         </Route>
-        <Route path='/search/:query'>
+        <Route path='/search/:query' exact>
           <SearchPage />
         </Route>
-        <Route path='/list/:username'>
+        <Route path='/list/:username' exact>
           <ListPage />
         </Route>
         <Route path='*'>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './SearchBar.scss';
 
 function SearchBar({ className }) {
@@ -71,7 +72,7 @@ function SearchBar({ className }) {
           <ul>
             {searchResults.map((item, index) => (
               <li key={index}>
-                <a href='!#'>
+                <Link to={`/anime/${item.mal_id}`}>
                   <span
                     style={{ backgroundImage: `url(${item.image_url})` }}
                     className='image'
@@ -82,14 +83,14 @@ function SearchBar({ className }) {
                       {item.type}, {new Date(item.start_date).getFullYear()}
                     </p>
                   </div>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
           <p className='search-result-bottom'>
-            <a href='!#'>
+            <Link to={`/search/${searchTerm}`}>
               View all results for <strong>{searchTerm}</strong>
-            </a>
+            </Link>
           </p>
         </div>
       )}
