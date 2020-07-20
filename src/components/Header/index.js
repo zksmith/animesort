@@ -6,7 +6,9 @@ function Header() {
   return (
     <header className='header'>
       <a href='#!'>
-        <h1>AnimeSort</h1>
+        <h1>
+          Anime<span className='light-blue'>Sort</span>
+        </h1>
       </a>
       <SearchBar className='search-form' />
       <a href='!#'>Login</a>

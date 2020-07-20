@@ -1,8 +1,20 @@
 @import '../../_colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@700&display=swap');
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
+  a:hover {
+    text-decoration: none;
+  }
+
+  h1 {
+    font-family: 'Rowdies', cursive;
+
+    .light-blue {
+      color: #2194d1;
+    }
+  }
 }
