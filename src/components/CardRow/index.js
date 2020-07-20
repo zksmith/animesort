@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ItemsCarousel from 'react-items-carousel';
-import ChevronButton from './CheckronButton';
+import ChevronButton from './ChevronButton';
 import Card from '../Card';
 
 import './CardRow.scss';
@@ -58,7 +58,9 @@ function CardRow({ title, data }) {
       >
         {!animeArray
           ? []
-          : animeArray.map((animeObject) => <Card anime={animeObject} />)}
+          : animeArray.map((animeObject, index) => (
+              <Card anime={animeObject} key={index} />
+            ))}
       </ItemsCarousel>
     </div>
   );
