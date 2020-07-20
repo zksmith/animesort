@@ -10,31 +10,29 @@ function SearchBar({ className }) {
     // cancelSearch gets set to true everytime the user types
     let cancelSearch = true;
 
-    const searchFetch = async (query) => {
+    const handleSearch = async (query) => {
       const response = await fetch(
         `https://api.jikan.moe/v3/search/anime?q=${query}&page=1`
       );
       const json = await response.json();
 
+      // if the searhterm hasnt changed since this function was called display the results
       if (!cancelSearch) {
-        console.log(json.results);
         setSearchResults(json.results.splice(0, 9));
       }
     };
 
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm) {
-        console.log(searchTerm);
-
         cancelSearch = false;
-        searchFetch(searchTerm);
+        handleSearch(searchTerm);
       } else {
+        // if the search bar is empty(!searchTerm) cancel search and remove results
         cancelSearch = true;
         setSearchResults([]);
       }
     }, 1000);
 
-    // cleanup when the component unmounts
     return () => {
       cancelSearch = true;
       clearTimeout(delayDebounceFn);
