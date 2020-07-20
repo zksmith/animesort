@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/home';
+import AnimePage from './pages/anime';
+import SearchPage from './pages/search';
+import ListPage from './pages/list';
 
 function App() {
   const [currentSeason, setCurrentSeason] = useState(null);
@@ -68,11 +72,29 @@ function App() {
   }, []);
 
   return (
-    <HomePage
-      airingData={airingData}
-      currentSeasonData={currentSeason}
-      mostPopularData={mostPopular}
-    />
+    <Router>
+      <Switch>
+        <Route path='/' exact>
+          <HomePage
+            airingData={airingData}
+            currentSeasonData={currentSeason}
+            mostPopularData={mostPopular}
+          />
+        </Route>
+        <Route path='/anime/:id'>
+          <AnimePage />
+        </Route>
+        <Route path='/search/:query'>
+          <SearchPage />
+        </Route>
+        <Route path='/list/:username'>
+          <ListPage />
+        </Route>
+        <Route path='*'>
+          <HomePage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
