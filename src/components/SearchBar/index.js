@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchSearchResults } from '../../services/jikanAPI';
+
 import './SearchBar.scss';
 
 function SearchBar({ className }) {
@@ -11,14 +13,14 @@ function SearchBar({ className }) {
     let cancelSearch = true;
 
     const handleSearch = async (query) => {
-      const response = await fetch(
-        `https://api.jikan.moe/v3/search/anime?q=${query}&page=1`
-      );
-      const json = await response.json();
-
-      // if the searhterm hasnt changed since this function was called display the results
+      // if the searhterm hasnt changed fetch the results
       if (!cancelSearch) {
-        setSearchResults(json.results.splice(0, 9));
+        try {
+          const results = await fetchSearchResults(query);
+          setSearchResults(results.splice(0, 9));
+        } catch (err) {
+          console.log(err.message);
+        }
       }
     };
 
@@ -27,7 +29,7 @@ function SearchBar({ className }) {
         cancelSearch = false;
         handleSearch(searchTerm);
       } else {
-        // if the search bar is empty(!searchTerm) cancel search and remove results
+        // if the search bar is empty cancel search and remove results
         cancelSearch = true;
         setSearchResults([]);
       }
