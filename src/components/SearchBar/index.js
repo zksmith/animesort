@@ -72,7 +72,10 @@ function SearchBar({ className }) {
           <ul>
             {searchResults.map((item, index) => (
               <li key={index}>
-                <Link to={`/anime/${item.mal_id}`}>
+                <Link
+                  to={`/anime/${item.mal_id}`}
+                  onClick={() => setSearchTerm('')}
+                >
                   <span
                     style={{ backgroundImage: `url(${item.image_url})` }}
                     className='image'
@@ -88,7 +91,10 @@ function SearchBar({ className }) {
             ))}
           </ul>
           <p className='search-result-bottom'>
-            <Link to={`/search/${searchTerm}`}>
+            <Link
+              to={`/search/${searchTerm}`}
+              onClick={() => setSearchTerm('')}
+            >
               View all results for <strong>{searchTerm}</strong>
             </Link>
           </p>

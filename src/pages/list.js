@@ -1,7 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
 
 function ListPage() {
-  return <h2>ListPage</h2>;
+  return (
+    <div className='container'>
+      <Header />
+      <h2>List Page</h2>
+    </div>
+  );
 }
 
 export default ListPage;
