@@ -5,7 +5,7 @@ import SearchBar from '../SearchBar';
 function Header() {
   return (
     <header className='header'>
-      <a href='#!'>
+      <a href='/'>
         <h1>
           Anime<span className='light-blue'>Sort</span>
         </h1>
