@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchSearchResults } from '../../services/jikanAPI';
+import LoadingIndicator from '../LoadingIndicator';
 
 import './SearchBar.scss';
 
 function SearchBar({ className }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     // cancelSearch gets set to true everytime the user types
     let cancelSearch = true;
 
@@ -18,14 +21,17 @@ function SearchBar({ className }) {
         try {
           const results = await fetchSearchResults(query);
           setSearchResults(results.splice(0, 9));
+          setLoading(false);
         } catch (err) {
           console.log(err.message);
+          setLoading(false);
         }
       }
     };
 
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm) {
+        setLoading(true);
         cancelSearch = false;
         handleSearch(searchTerm);
       } else {
@@ -69,27 +75,31 @@ function SearchBar({ className }) {
       </form>
       {searchTerm && (
         <div className='search-results'>
-          <ul>
-            {searchResults.map((item, index) => (
-              <li key={index}>
-                <Link
-                  to={`/anime/${item.mal_id}`}
-                  onClick={() => setSearchTerm('')}
-                >
-                  <span
-                    style={{ backgroundImage: `url(${item.image_url})` }}
-                    className='image'
-                  />
-                  <div>
-                    <p>{item.title}</p>
-                    <p className='secondary-text'>
-                      {item.type}, {new Date(item.start_date).getFullYear()}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <LoadingIndicator />
+          ) : (
+            <ul>
+              {searchResults.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={`/anime/${item.mal_id}`}
+                    onClick={() => setSearchTerm('')}
+                  >
+                    <span
+                      style={{ backgroundImage: `url(${item.image_url})` }}
+                      className='image'
+                    />
+                    <div>
+                      <p>{item.title}</p>
+                      <p className='secondary-text'>
+                        {item.type}, {new Date(item.start_date).getFullYear()}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
           <p className='search-result-bottom'>
             <Link
               to={`/search/${searchTerm}`}
