@@ -7,17 +7,6 @@ img {
   h2 {
     margin: 10px 0;
   }
-
-  p {
-    font-size: 12px;
-    margin: 0;
-    overflow: hidden;
-    line-clamp: 2;
-    max-height: 45px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
 }
 
 .chevron-btn {

@@ -1,0 +1,47 @@
+$size: 0.5em;
+$color: #2d5699;
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.loading {
+  box-sizing: border-box;
+  position: relative;
+  display: inline-block;
+  padding: $size;
+  vertical-align: middle;
+  text-align: center;
+  background-color: transparent;
+  border: 5px solid transparent;
+  border-top-color: $color;
+  border-bottom-color: $color;
+  border-radius: 50% 0;
+  box-shadow: 0 0 $size/2 $color inset;
+}
+
+.outer {
+  animation: spin 0.7s infinite linear;
+}
+
+.inner {
+  animation: spin 0.75s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* styling */
+#wrap {
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: middle;
+}
