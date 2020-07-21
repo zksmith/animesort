@@ -11,7 +11,7 @@ function Header() {
         </h1>
       </a>
       <SearchBar className='search-form' />
-      <a href='!#'>Login</a>
+      <a href='#!'>Login</a>
     </header>
   );
 }
