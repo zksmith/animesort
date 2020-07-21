@@ -5,7 +5,7 @@ import Card from '../Card';
 
 import './CardRow.scss';
 
-function CardRow({ title, data }) {
+function CardRow({ title, data, linkName }) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [numberOfCards, setNumOfCards] = useState(5);
   const [animeArray, setAnimeArray] = useState([]);
@@ -33,7 +33,7 @@ function CardRow({ title, data }) {
     <div className='card-row'>
       <div className='row-top'>
         <h2>{title}</h2>
-        <p>View more</p>
+        <a href={`viewall/${linkName}`}>View more</a>
       </div>
       <ItemsCarousel
         // Placeholder configurations

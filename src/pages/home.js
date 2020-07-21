@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/';
-import Background from '../components/Background/';
 import CardRow from '../components/CardRow';
 import {
   fetchMostPopular,
@@ -59,15 +58,16 @@ function HomePage() {
   }, []);
 
   return (
-    <>
-      <Background />
-      <div className='container'>
-        <Header />
-        <CardRow title='Summer 2020 Anime' data={currentSeasonData} />
-        <CardRow title='Most Popular' data={mostPopularData} />
-        <CardRow title='Currently Airing' data={airingData} />
-      </div>
-    </>
+    <div className='container'>
+      <Header />
+      <CardRow
+        title='Summer 2020 Anime'
+        data={currentSeasonData}
+        linkName='season'
+      />
+      <CardRow title='Most Popular' data={mostPopularData} linkName='popular' />
+      <CardRow title='Currently Airing' data={airingData} linkName='airing' />
+    </div>
   );
 }
 

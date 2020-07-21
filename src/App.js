@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Background from './components/Background/';
 import HomePage from './pages/home';
 import AnimePage from './pages/anime';
 import SearchPage from './pages/search';
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <Switch>
         <Route path='/' exact>
+          <Background />
           <HomePage />
         </Route>
         <Route path='/anime/:id' exact>

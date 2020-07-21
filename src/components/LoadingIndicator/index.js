@@ -7,8 +7,8 @@ function LoadingIndicator() {
   return (
     <div className='loading-container'>
       <div id='wrap'>
-        <div class='loading outer'>
-          <div class='loading inner'></div>
+        <div className='loading outer'>
+          <div className='loading inner'></div>
         </div>
       </div>
     </div>
