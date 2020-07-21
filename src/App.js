@@ -6,6 +6,7 @@ import AnimePage from './pages/anime';
 import SearchPage from './pages/search';
 import ListPage from './pages/list';
 import ViewAll from './pages/viewAll';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <ViewAll />
         </Route>
         <Route path='*'>
-          <HomePage />
+          <NotFound />
         </Route>
       </Switch>
     </Router>
