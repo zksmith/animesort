@@ -23,3 +23,12 @@ img {
     outline: none;
   }
 }
+
+.row-top {
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-size: 12px;
+    align-self: flex-end;
+  }
+}

@@ -31,7 +31,10 @@ function CardRow({ title, data }) {
 
   return (
     <div className='card-row'>
-      <h2>{title}</h2>
+      <div className='row-top'>
+        <h2>{title}</h2>
+        <p>View more</p>
+      </div>
       <ItemsCarousel
         // Placeholder configurations
         enablePlaceholder

@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/';
 import Background from '../components/Background/';
 import CardRow from '../components/CardRow';
+import {
+  fetchMostPopular,
+  fetchSeasonData,
+  fetchAiringData,
+} from '../services/jikanAPI';
 
 function HomePage() {
   const [currentSeasonData, setCurrentSeason] = useState(null);
@@ -9,64 +14,48 @@ function HomePage() {
   const [mostPopularData, setMostPopularData] = useState(null);
 
   useEffect(() => {
-    const fetchMostPopular = async () => {
-      const response = await fetch(
-        'https://api.jikan.moe/v3/top/anime/1/bypopularity'
-      );
-
-      if (response.ok) {
-        const json = await response.json();
-
+    const getHomeData = async () => {
+      try {
+        const mostPopularResults = await fetchMostPopular();
         setMostPopularData({
-          anime: json.top.map((item) => ({
+          anime: mostPopularResults.map((item) => ({
             title: item.title,
             image: item.image_url,
             id: item.mal_id,
           })),
         });
+      } catch (err) {
+        console.log(err);
       }
-    };
 
-    const fetchSeasonData = async () => {
-      const response = await fetch(
-        'https://api.jikan.moe/v3/season/2020/summer'
-      );
-
-      if (response.ok) {
-        const json = await response.json();
-
+      try {
+        const seasonResults = await fetchSeasonData();
         setCurrentSeason({
-          anime: json.anime.map((item) => ({
+          anime: seasonResults.map((item) => ({
             title: item.title,
             image: item.image_url,
             id: item.mal_id,
           })),
         });
+      } catch (err) {
+        console.log(err);
       }
-    };
 
-    const fetchAiringData = async () => {
-      const response = await fetch(
-        'https://api.jikan.moe/v3/top/anime/1/airing'
-      );
-
-      if (response.ok) {
-        const json = await response.json();
-
+      try {
+        const airingResults = await fetchAiringData();
         setAiringData({
-          anime: json.top.map((item) => ({
+          anime: airingResults.map((item) => ({
             title: item.title,
             image: item.image_url,
             id: item.mal_id,
           })),
         });
+      } catch (err) {
+        console.log(err);
       }
     };
 
-    fetchSeasonData();
-    fetchAiringData();
-    fetchMostPopular();
-    return () => {};
+    getHomeData();
   }, []);
 
   return (

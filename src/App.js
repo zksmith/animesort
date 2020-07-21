@@ -4,6 +4,7 @@ import HomePage from './pages/home';
 import AnimePage from './pages/anime';
 import SearchPage from './pages/search';
 import ListPage from './pages/list';
+import ViewAll from './pages/viewAll';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path='/list/:username' exact>
           <ListPage />
+        </Route>
+        <Route path='/viewall/:type' exact>
+          <ViewAll />
         </Route>
         <Route path='*'>
           <HomePage />
