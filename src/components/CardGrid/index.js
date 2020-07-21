@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card';
 
-import './SearchGrid.scss';
+import './CardGrid.scss';
 
 function SearchGrid({ array }) {
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchSearchResults } from '../services/jikanAPI';
-import SearchGrid from '../components/SearchGrid';
+import SearchGrid from '../components/CardGrid';
 import LoadingIndicator from '../components/LoadingIndicator';
 
 function SearchPage() {

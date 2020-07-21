@@ -6,7 +6,7 @@ import {
   fetchMostPopular,
   fetchAiringData,
 } from '../services/jikanAPI';
-import SearchGrid from '../components/SearchGrid';
+import SearchGrid from '../components/CardGrid';
 
 function ViewAll() {
   const { type } = useParams();
