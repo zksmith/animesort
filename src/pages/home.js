@@ -16,39 +16,21 @@ function HomePage() {
     const getHomeData = async () => {
       try {
         const mostPopularResults = await fetchMostPopular();
-        setMostPopularData({
-          anime: mostPopularResults.map((item) => ({
-            title: item.title,
-            image: item.image_url,
-            id: item.mal_id,
-          })),
-        });
+        setMostPopularData(mostPopularResults);
       } catch (err) {
         console.log(err);
       }
 
       try {
         const seasonResults = await fetchSeasonData();
-        setCurrentSeason({
-          anime: seasonResults.map((item) => ({
-            title: item.title,
-            image: item.image_url,
-            id: item.mal_id,
-          })),
-        });
+        setCurrentSeason(seasonResults);
       } catch (err) {
         console.log(err);
       }
 
       try {
         const airingResults = await fetchAiringData();
-        setAiringData({
-          anime: airingResults.map((item) => ({
-            title: item.title,
-            image: item.image_url,
-            id: item.mal_id,
-          })),
-        });
+        setAiringData(airingResults);
       } catch (err) {
         console.log(err);
       }

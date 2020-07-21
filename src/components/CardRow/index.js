@@ -23,7 +23,7 @@ function CardRow({ title, data, linkName }) {
 
   useEffect(() => {
     // Max amount of items in each row is 20
-    setAnimeArray(data?.anime.splice(0, 20));
+    setAnimeArray(data?.splice(0, 20));
 
     upDateNumOfCards();
     window.addEventListener('resize', upDateNumOfCards);

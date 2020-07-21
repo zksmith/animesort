@@ -18,7 +18,11 @@ export async function fetchMostPopular() {
 
   if (response.ok) {
     const json = await response.json();
-    return json.top;
+    return json.top.map((item) => ({
+      title: item.title,
+      image: item.image_url,
+      id: item.mal_id,
+    }));
   } else {
     throw response.statusText;
   }
@@ -29,7 +33,11 @@ export async function fetchSeasonData() {
 
   if (response.ok) {
     const json = await response.json();
-    return json.anime;
+    return json.anime.map((item) => ({
+      title: item.title,
+      image: item.image_url,
+      id: item.mal_id,
+    }));
   } else {
     throw response.statusText;
   }
@@ -40,7 +48,11 @@ export async function fetchAiringData() {
 
   if (response.ok) {
     const json = await response.json();
-    return json.top;
+    return json.top.map((item) => ({
+      title: item.title,
+      image: item.image_url,
+      id: item.mal_id,
+    }));
   } else {
     throw response.statusText;
   }

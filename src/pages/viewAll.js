@@ -16,13 +16,7 @@ function ViewAll() {
   const handleTypeSeason = async () => {
     try {
       const results = await fetchSeasonData();
-      setDisplayedData(
-        results.map((item) => ({
-          title: item.title,
-          image: item.image_url,
-          id: item.mal_id,
-        }))
-      );
+      setDisplayedData(results);
     } catch (err) {
       console.log(err);
     }
@@ -31,13 +25,7 @@ function ViewAll() {
   const handleTypePopular = async () => {
     try {
       const results = await fetchMostPopular();
-      setDisplayedData(
-        results.map((item) => ({
-          title: item.title,
-          image: item.image_url,
-          id: item.mal_id,
-        }))
-      );
+      setDisplayedData(results);
     } catch (err) {
       console.log(err);
     }
@@ -46,13 +34,7 @@ function ViewAll() {
   const handleTypeAiring = async () => {
     try {
       const results = await fetchAiringData();
-      setDisplayedData(
-        results.map((item) => ({
-          title: item.title,
-          image: item.image_url,
-          id: item.mal_id,
-        }))
-      );
+      setDisplayedData(results);
     } catch (err) {
       console.log(err);
     }
