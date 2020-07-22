@@ -4,7 +4,7 @@ import './Card.scss';
 
 function Card({ anime }) {
   return (
-    <Link to={`/anime/${anime.id}`} className='card'>
+    <Link to={`/details/${anime.id}`} className='card'>
       <img src={anime.image} alt='' />
       <p>{anime.title}</p>
     </Link>

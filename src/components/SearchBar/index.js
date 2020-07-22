@@ -82,7 +82,7 @@ function SearchBar({ className }) {
               {searchResults.map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={`/anime/${item.mal_id}`}
+                    to={`/details/${item.mal_id}`}
                     onClick={() => setSearchTerm('')}
                   >
                     <span

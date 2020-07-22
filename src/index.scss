@@ -46,4 +46,7 @@ a {
 .secondary-text {
   color: $secondary-text;
   font-size: 14px;
+  a {
+    color: $secondary-text;
+  }
 }

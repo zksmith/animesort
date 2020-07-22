@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Background from './components/Background/';
 import HomePage from './pages/home';
-import AnimePage from './pages/anime';
+import DetailsPage from './pages/details';
 import SearchPage from './pages/search';
 import ListPage from './pages/list';
 import ViewAll from './pages/viewAll';
@@ -16,8 +16,8 @@ function App() {
           <Background />
           <HomePage />
         </Route>
-        <Route path='/anime/:id' exact>
-          <AnimePage />
+        <Route path='/details/:id' exact>
+          <DetailsPage />
         </Route>
         <Route path='/search/:query' exact>
           <SearchPage />

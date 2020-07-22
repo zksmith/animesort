@@ -1,7 +1,7 @@
+const BASE_URL = 'https://api.jikan.moe/v3/';
+
 export async function fetchSearchResults(query) {
-  const response = await fetch(
-    `https://api.jikan.moe/v3/search/anime?q=${query}&page=1`
-  );
+  const response = await fetch(`${BASE_URL}search/anime?q=${query}`);
 
   if (response.ok) {
     const json = await response.json();
@@ -12,9 +12,7 @@ export async function fetchSearchResults(query) {
 }
 
 export async function fetchMostPopular() {
-  const response = await fetch(
-    'https://api.jikan.moe/v3/top/anime/1/bypopularity'
-  );
+  const response = await fetch(`${BASE_URL}top/anime/1/bypopularity`);
 
   if (response.ok) {
     const json = await response.json();
@@ -29,7 +27,7 @@ export async function fetchMostPopular() {
 }
 
 export async function fetchSeasonData() {
-  const response = await fetch('https://api.jikan.moe/v3/season/2020/summer');
+  const response = await fetch(`${BASE_URL}season/2020/summer`);
 
   if (response.ok) {
     const json = await response.json();
@@ -44,7 +42,7 @@ export async function fetchSeasonData() {
 }
 
 export async function fetchAiringData() {
-  const response = await fetch('https://api.jikan.moe/v3/top/anime/1/airing');
+  const response = await fetch(`${BASE_URL}top/anime/1/airing`);
 
   if (response.ok) {
     const json = await response.json();
@@ -53,6 +51,36 @@ export async function fetchAiringData() {
       image: item.image_url,
       id: item.mal_id,
     }));
+  } else {
+    throw response.statusText;
+  }
+}
+
+export async function fetchAnimeData(id) {
+  const response = await fetch(`${BASE_URL}anime/${id}`);
+
+  if (response.ok) {
+    const json = await response.json();
+
+    // create an array of all the related anime
+    let relatedArray = [];
+    Object.values(json.related).forEach(
+      (array) => (relatedArray = [...relatedArray, ...array])
+    );
+
+    return {
+      image: json.image_url,
+      trailer: json.trailer_url,
+      title: json.title,
+      title_japanese: json.title_japanese,
+      type: json.type,
+      status: json.status,
+      aired_string: json.aired.string,
+      duration: json.duration,
+      average_score: json.score,
+      synopsis: json.synopsis,
+      related: relatedArray,
+    };
   } else {
     throw response.statusText;
   }
