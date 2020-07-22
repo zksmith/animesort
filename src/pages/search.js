@@ -15,13 +15,7 @@ function SearchPage() {
     const handleSearch = async () => {
       try {
         const results = await fetchSearchResults(query);
-        setAnimeArray(
-          results.map((anime) => ({
-            title: anime.title,
-            image: anime.image_url,
-            id: anime.mal_id,
-          }))
-        );
+        setAnimeArray(results);
         setLoading(false);
       } catch (err) {
         console.log(err.message);

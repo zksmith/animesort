@@ -82,11 +82,11 @@ function SearchBar({ className }) {
               {searchResults.map((item, index) => (
                 <li key={index}>
                   <Link
-                    to={`/details/${item.mal_id}`}
+                    to={`/details/${item.id}`}
                     onClick={() => setSearchTerm('')}
                   >
                     <span
-                      style={{ backgroundImage: `url(${item.image_url})` }}
+                      style={{ backgroundImage: `url(${item.image})` }}
                       className='image'
                     />
                     <div>
