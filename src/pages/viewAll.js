@@ -12,6 +12,7 @@ function ViewAll() {
   const { type } = useParams();
   const [displayedData, setDisplayedData] = useState([]);
   const [title, setTitle] = useState('');
+  const [error, setError] = useState(false);
 
   const handleTypeSeason = async () => {
     try {
@@ -19,6 +20,7 @@ function ViewAll() {
       setDisplayedData(results);
     } catch (err) {
       console.log(err);
+      setError(true);
     }
   };
 
@@ -28,6 +30,7 @@ function ViewAll() {
       setDisplayedData(results);
     } catch (err) {
       console.log(err);
+      setError(true);
     }
   };
 
@@ -37,6 +40,7 @@ function ViewAll() {
       setDisplayedData(results);
     } catch (err) {
       console.log(err);
+      setError(true);
     }
   };
 
@@ -65,7 +69,7 @@ function ViewAll() {
     <div className='container'>
       <Header />
       <h2>{title}</h2>
-      <SearchGrid array={displayedData} />
+      {error ? 'Data unavailable' : <SearchGrid array={displayedData} />}
     </div>
   );
 }

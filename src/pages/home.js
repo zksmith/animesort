@@ -48,7 +48,7 @@ function HomePage() {
         linkName='season'
       />
       <CardRow title='Most Popular' data={mostPopularData} linkName='popular' />
-      <CardRow title='Currently Airing' data={airingData} linkName='airing' />
+      <CardRow title='Top Airing' data={airingData} linkName='airing' />
     </div>
   );
 }
