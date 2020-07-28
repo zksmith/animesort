@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header/';
 import { useParams } from 'react-router-dom';
 import { fetchAnimeData } from '../services/jikanAPI';
 import Details from '../components/Details';
@@ -19,13 +18,29 @@ function DetailsPage() {
     getAnimeDetails();
   }, [id]);
 
+  const addToList = async (title, image) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/list`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-token': localStorage.getItem('token'),
+        },
+        body: JSON.stringify({ title, image, animeid: id }),
+      });
+      const json = await response.json();
+      console.log(json);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='container'>
-      <Header />
       {!animeDetails ? (
         <LoadingIndicator />
       ) : (
-        <Details detailsObject={animeDetails} />
+        <Details detailsObject={animeDetails} addButtonHandler={addToList} />
       )}
     </div>
   );

@@ -1,0 +1,18 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  button[type='submit'] {
+    margin: 10px 0;
+    background-color: #2d5699;
+    border: 1px solid transparent;
+    color: #fff;
+    align-self: center;
+    padding: 5px 20px;
+
+    &:hover,
+    &:focus {
+      border: 1px solid #fff;
+    }
+  }
+}

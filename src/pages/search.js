@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
 import { fetchSearchResults } from '../services/jikanAPI';
 import SearchGrid from '../components/CardGrid';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -28,7 +27,6 @@ function SearchPage() {
 
   return (
     <div className='container'>
-      <Header />
       <h2>Search results for "{query}"</h2>
       {loading ? <LoadingIndicator /> : <SearchGrid array={animeArray} />}
     </div>

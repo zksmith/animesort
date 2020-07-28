@@ -2,12 +2,20 @@ import React from 'react';
 
 import './Details.scss';
 
-function Details({ detailsObject }) {
+function Details({ detailsObject, addButtonHandler }) {
   return (
     <main className='details'>
       <section className='top'>
         <div className='img-container'>
-          <img src={detailsObject.image} alt='' />
+          <img src={detailsObject.image} alt={detailsObject.title} />
+          <button
+            onClick={() =>
+              addButtonHandler(detailsObject.title, detailsObject.image)
+            }
+            className='btn'
+          >
+            Add
+          </button>
         </div>
         <div className='video-container'>
           <iframe

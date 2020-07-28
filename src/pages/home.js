@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header/';
 import CardRow from '../components/CardRow';
 import {
   fetchMostPopular,
@@ -41,7 +40,6 @@ function HomePage() {
 
   return (
     <div className='container'>
-      <Header />
       <CardRow
         title='Summer 2020 Anime'
         data={currentSeasonData}

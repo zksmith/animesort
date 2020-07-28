@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header';
 import {
   fetchSeasonData,
   fetchMostPopular,
@@ -67,7 +66,6 @@ function ViewAll() {
 
   return (
     <div className='container'>
-      <Header />
       <h2>{title}</h2>
       {error ? 'Data unavailable' : <SearchGrid array={displayedData} />}
     </div>

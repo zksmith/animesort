@@ -3,7 +3,8 @@ import Card from '../Card';
 
 import './CardGrid.scss';
 
-function SearchGrid({ array }) {
+function CardGrid({ array }) {
+  console.log(array);
   return (
     <div className='search-grid'>
       {array.map((item, index) => (
@@ -13,4 +14,4 @@ function SearchGrid({ array }) {
   );
 }
 
-export default SearchGrid;
+export default CardGrid;

@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.scss';
 import SearchBar from '../SearchBar';
 
-function Header() {
+function Header({ openModal }) {
   return (
     <header className='header'>
       <a href='/'>
@@ -11,7 +11,9 @@ function Header() {
         </h1>
       </a>
       <SearchBar className='search-form' />
-      <a href='#!'>Login</a>
+      <button className='btn' onClick={openModal}>
+        Login
+      </button>
     </header>
   );
 }

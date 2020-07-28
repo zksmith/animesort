@@ -1,11 +1,33 @@
-import React from 'react';
-import Header from '../components/Header';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import CardGrid from '../components/CardGrid';
 
 function ListPage() {
+  const { username } = useParams();
+  const [listData, setListData] = useState(null);
+
+  useEffect(() => {
+    const getListData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/list/${username}`
+        );
+
+        const json = await response.json();
+        console.log(json);
+        setListData(json);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getListData();
+  }, [username]);
+
   return (
     <div className='container'>
-      <Header />
-      <h2>List Page</h2>
+      <h2>{listData?.username}'s List</h2>
+      {listData?.list && <CardGrid array={listData.list} />}
     </div>
   );
 }
