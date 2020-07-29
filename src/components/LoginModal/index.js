@@ -34,7 +34,6 @@ function LoginModal({ modalIsOpen, closeModal }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     try {
       const response = await fetch(`http://localhost:5000/api/auth/login`, {
@@ -74,7 +73,7 @@ function LoginModal({ modalIsOpen, closeModal }) {
         />
         <label htmlFor='password'>Password</label>
         <input
-          type='text'
+          type='password'
           name='password'
           id='password'
           onChange={(e) => handleInput(e)}
