@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchSearchResults } from '../../services/jikanAPI';
 import LoadingIndicator from '../LoadingIndicator';
 
@@ -47,9 +47,17 @@ function SearchBar({ className }) {
     };
   }, [searchTerm]);
 
+  let history = useHistory();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/search/${searchTerm}`);
+    setSearchResults([]);
+    setSearchTerm('');
+  };
+
   return (
     <div className={className}>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type='text'
           placeholder='Search...'
