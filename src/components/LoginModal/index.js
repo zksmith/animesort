@@ -36,17 +36,20 @@ function LoginModal({ modalIsOpen, closeModal }) {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          username: formData.username,
-          password: formData.password,
-        }),
-      });
+      const response = await fetch(
+        `https://animesort-backend.herokuapp.com//api/auth/login`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            username: formData.username,
+            password: formData.password,
+          }),
+        }
+      );
       const json = await response.json();
       console.log(json);
       localStorage.setItem('token', json.token);

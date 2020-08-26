@@ -10,7 +10,7 @@ function ListPage() {
     const getListData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/list/${username}`
+          `https://animesort-backend.herokuapp.com/api/list/${username}`
         );
 
         const json = await response.json();
