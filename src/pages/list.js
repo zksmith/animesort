@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CardGrid from '../components/CardGrid';
 import LoadingIndicator from '../components/LoadingIndicator';
+import { getListData } from '../services/userActions';
 
 function ListPage() {
   const { username } = useParams();
@@ -9,26 +10,17 @@ function ListPage() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const getListData = async () => {
+    const onLoad = async () => {
       try {
-        const response = await fetch(
-          `https://animesort-backend.herokuapp.com/api/list/${username}`
-        );
-
-        const json = await response.json();
-        if (response.ok) {
-          console.log(json);
-          setListData(json);
-        } else {
-          throw json;
-        }
+        const data = await getListData(username);
+        setListData(data);
       } catch (err) {
         console.log(err);
         setError(true);
       }
     };
 
-    getListData();
+    onLoad();
   }, [username]);
 
   if (error) {

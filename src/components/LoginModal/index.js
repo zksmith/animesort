@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { login } from '../../services/userActions';
 import './LoginModal.scss';
 
 const customStyles = {
@@ -36,23 +37,9 @@ function LoginModal({ modalIsOpen, closeModal }) {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `https://animesort-backend.herokuapp.com//api/auth/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            username: formData.username,
-            password: formData.password,
-          }),
-        }
-      );
-      const json = await response.json();
-      console.log(json);
-      localStorage.setItem('token', json.token);
+      const token = await login(formData);
+      // TODO: Get user data using token
+      closeModal();
     } catch (err) {
       console.log(err);
     }

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { fetchAnimeData } from '../services/jikanAPI';
 import Details from '../components/Details';
 import LoadingIndicator from '../components/LoadingIndicator';
+import { addToList } from '../services/userActions';
 
 function DetailsPage() {
   const { id } = useParams();
@@ -18,18 +19,9 @@ function DetailsPage() {
     getAnimeDetails();
   }, [id]);
 
-  const addToList = async (title, image) => {
+  const addButtonHandler = async (title, image) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/list`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-auth-token': localStorage.getItem('token'),
-        },
-        body: JSON.stringify({ title, image, animeid: id }),
-      });
-      const json = await response.json();
-      console.log(json);
+      await addToList(title, image, id);
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +32,10 @@ function DetailsPage() {
       {!animeDetails ? (
         <LoadingIndicator />
       ) : (
-        <Details detailsObject={animeDetails} addButtonHandler={addToList} />
+        <Details
+          detailsObject={animeDetails}
+          addButtonHandler={addButtonHandler}
+        />
       )}
     </div>
   );
