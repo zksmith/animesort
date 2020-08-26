@@ -37,8 +37,8 @@ function LoginModal({ modalIsOpen, closeModal }) {
     e.preventDefault();
 
     try {
-      const token = await login(formData);
       // TODO: Get user data using token
+      // const token = await login(formData);
       closeModal();
     } catch (err) {
       console.log(err);
