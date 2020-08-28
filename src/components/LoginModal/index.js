@@ -63,6 +63,7 @@ function LoginModal({ modalIsOpen, closeModal }) {
           type='text'
           name='username'
           id='username'
+          autoFocus
           onChange={(e) => handleInput(e)}
         />
         <label htmlFor='password'>Password</label>
