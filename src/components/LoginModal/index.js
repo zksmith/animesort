@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { NotificationManager } from 'react-notifications';
 import { login } from '../../services/userActions';
 import './LoginModal.scss';
 
@@ -38,11 +39,13 @@ function LoginModal({ modalIsOpen, closeModal }) {
 
     try {
       await login(formData);
+      NotificationManager.success('You have successfully logged in.');
       // TODO: Get user data using token
       // const token = await login(formData);
       closeModal();
     } catch (err) {
       console.log(err);
+      NotificationManager.error(err.errors[0].msg);
     }
   };
 

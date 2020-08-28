@@ -34,7 +34,7 @@ export const getListData = async (username) => {
 };
 
 export const addToList = async (title, image, id) => {
-  await fetch(`${BASE_URL}/list`, {
+  const response = await fetch(`${BASE_URL}/list`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,4 +42,9 @@ export const addToList = async (title, image, id) => {
     },
     body: JSON.stringify({ title, image, animeid: id }),
   });
+
+  if (!response.ok) {
+    const json = await response.json();
+    throw json;
+  }
 };

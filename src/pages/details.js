@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NotificationManager } from 'react-notifications';
 import { useParams } from 'react-router-dom';
 import { fetchAnimeData } from '../services/jikanAPI';
 import Details from '../components/Details';
@@ -22,8 +23,10 @@ function DetailsPage() {
   const addButtonHandler = async (title, image) => {
     try {
       await addToList(title, image, id);
+      NotificationManager.success(`${title} added to list`);
     } catch (err) {
       console.log(err);
+      NotificationManager.error(err.msg);
     }
   };
 
