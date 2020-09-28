@@ -11,9 +11,10 @@ function Header({ openModal }) {
         </h1>
       </a>
       <SearchBar className='search-form' />
-      <button className='btn' onClick={openModal}>
+      {/* <button className='btn' onClick={openModal}>
         Login
-      </button>
+      </button> */}
+      <span></span>
     </header>
   );
 }

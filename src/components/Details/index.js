@@ -9,10 +9,11 @@ function Details({ detailsObject, addButtonHandler }) {
         <div className='img-container'>
           <img src={detailsObject.image} alt={detailsObject.title} />
           <button
-            onClick={() =>
-              addButtonHandler(detailsObject.title, detailsObject.image)
-            }
+            // onClick={() =>
+            //   addButtonHandler(detailsObject.title, detailsObject.image)
+            // }
             className='btn'
+            style={{ cursor: 'not-allowed' }}
           >
             Add
           </button>
