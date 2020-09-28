@@ -4,6 +4,7 @@ import {
   fetchSeasonData,
   fetchMostPopular,
   fetchAiringData,
+  fetchMoviesData,
 } from '../services/jikanAPI';
 import SearchGrid from '../components/CardGrid';
 
@@ -43,6 +44,16 @@ function ViewAll() {
     }
   };
 
+  const handleTypeMovies = async () => {
+    try {
+      const results = await fetchMoviesData();
+      setDisplayedData(results);
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
+  };
+
   useEffect(() => {
     switch (type.toLowerCase()) {
       case 'season':
@@ -56,6 +67,10 @@ function ViewAll() {
       case 'airing':
         handleTypeAiring();
         setTitle('Currently Airing Anime');
+        break;
+      case 'movies':
+        handleTypeMovies();
+        setTitle('Top Movies');
         break;
       default:
         break;

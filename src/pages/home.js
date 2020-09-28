@@ -4,11 +4,13 @@ import {
   fetchMostPopular,
   fetchSeasonData,
   fetchAiringData,
+  fetchMoviesData,
 } from '../services/jikanAPI';
 
 function HomePage() {
   const [currentSeasonData, setCurrentSeason] = useState(null);
   const [airingData, setAiringData] = useState(null);
+  const [movieData, setMovieData] = useState(null);
   const [mostPopularData, setMostPopularData] = useState(null);
 
   useEffect(() => {
@@ -33,6 +35,11 @@ function HomePage() {
       } catch (err) {
         console.log(err);
       }
+
+      try {
+        const movieResults = await fetchMoviesData();
+        setMovieData(movieResults);
+      } catch (err) {}
     };
 
     getHomeData();
@@ -45,6 +52,7 @@ function HomePage() {
         data={currentSeasonData}
         linkName='season'
       />
+      <CardRow title='Top Movies' data={movieData} linkName='movies' />
       <CardRow title='Most Popular' data={mostPopularData} linkName='popular' />
       <CardRow title='Top Airing' data={airingData} linkName='airing' />
     </div>

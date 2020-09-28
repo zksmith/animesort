@@ -70,6 +70,23 @@ export async function fetchAiringData() {
   }
 }
 
+// top movies
+export async function fetchMoviesData() {
+  const response = await fetch(`${BASE_URL}top/anime/1/movie`);
+
+  if (response.ok) {
+    const json = await response.json();
+
+    return json.top.map((item) => ({
+      title: item.title,
+      image: item.image_url,
+      id: item.mal_id,
+    }));
+  } else {
+    throw response.statusText;
+  }
+}
+
 // Individual show/movie details
 export async function fetchAnimeData(id) {
   const response = await fetch(`${BASE_URL}anime/${id}`);
