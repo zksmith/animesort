@@ -6,6 +6,7 @@ import {
   fetchAiringData,
   fetchMoviesData,
 } from '../services/jikanAPI';
+import { handleAsyncFunction } from '../services/errorWrapper';
 
 function HomePage() {
   const [currentSeasonData, setCurrentSeason] = useState(null);
@@ -15,31 +16,18 @@ function HomePage() {
 
   useEffect(() => {
     const getHomeData = async () => {
-      try {
-        const mostPopularResults = await fetchMostPopular();
-        setMostPopularData(mostPopularResults);
-      } catch (err) {
-        console.log(err);
-      }
+      const [mostPopular] = await handleAsyncFunction(fetchMostPopular);
 
-      try {
-        const seasonResults = await fetchSeasonData();
-        setCurrentSeason(seasonResults);
-      } catch (err) {
-        console.log(err);
-      }
+      const [seasonResults] = await handleAsyncFunction(fetchSeasonData);
 
-      try {
-        const airingResults = await fetchAiringData();
-        setAiringData(airingResults);
-      } catch (err) {
-        console.log(err);
-      }
+      const [airingResults] = await handleAsyncFunction(fetchAiringData);
 
-      try {
-        const movieResults = await fetchMoviesData();
-        setMovieData(movieResults);
-      } catch (err) {}
+      const [movieResults] = await handleAsyncFunction(fetchMoviesData);
+
+      setMostPopularData(mostPopular);
+      setCurrentSeason(seasonResults);
+      setAiringData(airingResults);
+      setMovieData(movieResults);
     };
 
     getHomeData();
